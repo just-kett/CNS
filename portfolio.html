@@ -1,0 +1,936 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Portfolio · Kỹ Năng Số</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --ink:#0d1117;--ink2:#3a4f64;--ink3:#5a6a7a;
+  --paper:#f8fbfd;--paper2:#f3f7fb;--paper3:#e8eef4;
+  --gold:#84bcd6;--gold2:#d9edf7;--gold3:#5b8ea8;
+  --teal:#74c1df;--teal2:#def4fb;
+  --rose:#c0392b;--rose2:#fce8e6;
+  --cobalt:#8dc3db;--cobalt2:#d9edf7;
+  --violet:#4b2991;--violet2:#ece6f8;
+  --forest:#1e5631;--forest2:#d6eddb;
+  --nav-h:68px;
+  --r:10px;--r2:18px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',sans-serif;background:var(--paper);color:var(--ink);line-height:1.75;-webkit-font-smoothing:antialiased}
+img{max-width:100%;display:block;border-radius:8px}
+a{color:var(--teal);text-decoration:none}
+::selection{background:var(--gold2);color:var(--gold3)}
+::-webkit-scrollbar{width:5px}
+::-webkit-scrollbar-track{background:var(--paper2)}
+::-webkit-scrollbar-thumb{background:var(--gold);border-radius:3px}
+
+/* ── NAV ── */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:999;
+  height:var(--nav-h);
+  background:rgba(248,251,253,.92);
+  backdrop-filter:blur(20px) saturate(1.2);
+  -webkit-backdrop-filter:blur(20px) saturate(1.2);
+  border-bottom:1px solid rgba(116,193,223,.18);
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 clamp(24px,5%,80px);
+}
+.nav-logo{
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.25rem;font-weight:600;
+  color:var(--cobalt);letter-spacing:.02em;
+  display:flex;align-items:center;gap:10px;
+}
+.nav-logo-dot{
+  width:8px;height:8px;border-radius:50%;
+  background:var(--gold);flex-shrink:0;
+}
+.nav-links{display:flex;gap:4px;list-style:none}
+.nav-links a{
+  padding:8px 20px;border-radius:999px;
+  font-size:.82rem;font-weight:600;letter-spacing:.06em;
+  color:var(--ink3);transition:all .25s;text-transform:uppercase;
+}
+.nav-links a:hover,.nav-links a.active{
+  background:rgba(116,193,223,.95);color:#fff;
+}
+.nav-toggle{display:none;cursor:pointer;color:var(--cobalt);font-size:1.5rem;line-height:1}
+
+/* ── HERO ── */
+#home{
+  min-height:100svh;
+  padding-top:var(--nav-h);
+  background:linear-gradient(145deg, #f1fbff 0%, #b4ddf0 35%, #8dc3db 100%);
+  display:grid;place-items:center;
+  position:relative;overflow:hidden;
+}
+.hero-grid{
+  position:relative;z-index:1;
+  max-width:1200px;width:100%;margin:0 auto;
+  padding:clamp(60px,8vh,120px) clamp(24px,5%,80px);
+  display:grid;grid-template-columns:1.1fr 1fr;
+  gap:clamp(40px,6vw,100px);align-items:center;
+}
+/* decorative lines */
+#home::before{
+  content:'';position:absolute;inset:0;
+  background:
+    linear-gradient(90deg,rgba(255,255,255,.18) 1px,transparent 1px),
+    linear-gradient(rgba(255,255,255,.18) 1px,transparent 1px);
+  background-size:70px 70px;
+}
+#home::after{
+  content:'';position:absolute;
+  bottom:-2px;left:0;right:0;height:80px;
+  background:linear-gradient(to bottom,transparent,var(--paper));
+  z-index:2;
+}
+.hero-eyebrow{
+  display:inline-flex;align-items:center;gap:8px;
+  font-size:.72rem;font-weight:700;letter-spacing:.14em;
+  text-transform:uppercase;color:#4a8fae;
+  margin-bottom:28px;
+}
+.hero-eyebrow::before,.hero-eyebrow::after{
+  content:'';display:block;width:24px;height:1px;background:rgba(74,143,174,.7);opacity:.85;
+}
+h1.hero-name{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(2.8rem,5.5vw,5rem);
+  font-weight:600;line-height:1.08;
+  color:#fff;margin-bottom:8px;
+  text-shadow:0 16px 48px rgba(0,0,0,.18);
+}
+h1.hero-name em{
+  font-style:italic;color:var(--gold2);
+}
+.hero-role{
+  font-size:clamp(.95rem,1.5vw,1.1rem);
+  color:rgba(255,255,255,.92);
+  font-weight:300;margin-bottom:40px;
+  max-width:440px;line-height:1.75;
+  text-shadow:0 10px 32px rgba(0,0,0,.12);
+}
+.hero-meta{
+  display:grid;grid-template-columns:1fr 1fr;gap:10px;
+  margin-bottom:40px;
+}
+.meta-item{
+  background:rgba(255,255,255,.14);
+  border:1px solid rgba(255,255,255,.22);
+  border-radius:var(--r);padding:14px 18px;
+}
+.meta-label{
+  font-size:.68rem;font-weight:700;letter-spacing:.1em;
+  text-transform:uppercase;color:rgba(74,143,174,.9);margin-bottom:5px;
+}
+.meta-val{font-size:.88rem;color:#0c2231;font-weight:600}
+.hero-skills-row{display:flex;flex-wrap:wrap;gap:8px}
+.hskill{
+  background:rgba(255,255,255,.2);
+  border:1px solid rgba(255,255,255,.22);
+  border-radius:50px;padding:5px 14px;
+  font-size:.75rem;color:#0c2231;font-weight:600;
+}
+/* photo side */
+.hero-photo-side{
+  display:flex;justify-content:flex-end;align-items:center;
+  position:relative;
+}
+.photo-frame{
+  width:clamp(200px,22vw,300px);height:clamp(200px,22vw,300px);
+  border-radius:50%;
+  border:1px solid rgba(116,193,223,.35);
+  padding:12px;
+  animation:levitate 7s ease-in-out infinite;
+  position:relative;
+  box-shadow:0 30px 80px rgba(28,108,146,.08);
+}
+@keyframes levitate{
+  0%,100%{transform:translateY(0)}
+  50%{transform:translateY(-18px)}
+}
+.photo-frame::before{
+  content:'';position:absolute;inset:-18px;border-radius:50%;
+  border:1px dashed rgba(116,193,223,.22);
+  animation:spin 25s linear infinite;
+}
+@keyframes spin{to{transform:rotate(360deg)}}
+.photo-frame::after{
+  content:'';position:absolute;inset:-36px;border-radius:50%;
+  border:1px dashed rgba(116,193,223,.12);
+  animation:spin 40s linear infinite reverse;
+}
+.photo-inner{
+  width:100%;height:100%;border-radius:50%;
+  background:rgba(255,255,255,.07);
+  display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  gap:12px;color:rgba(255,255,255,.4);
+  font-size:.82rem;text-align:center;
+  overflow:hidden;
+}
+.photo-inner img{width:100%;height:100%;object-fit:cover;border-radius:50%}
+.photo-icon{font-size:3.5rem;opacity:.5}
+.hero-scroll-cue{
+  position:absolute;bottom:clamp(20px,4vh,48px);left:50%;transform:translateX(-50%);
+  z-index:3;
+  display:flex;flex-direction:column;align-items:center;gap:8px;
+  color:rgba(255,255,255,.4);font-size:.72rem;letter-spacing:.1em;
+  text-transform:uppercase;animation:bob 2.2s ease-in-out infinite;
+}
+@keyframes bob{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(8px)}}
+.scroll-line{
+  width:1px;height:40px;
+  background:linear-gradient(to bottom,rgba(200,169,110,.7),transparent);
+}
+
+/* ── SECTION BASE ── */
+section{padding:clamp(72px,8vw,120px) clamp(24px,5%,80px)}
+.wrap{width:95%;max-width:1600px;margin:0 auto}
+.s-eyebrow{
+  font-size:.72rem;font-weight:700;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--gold);
+  display:flex;align-items:center;gap:10px;margin-bottom:16px;
+}
+.s-eyebrow::after{content:'';flex:1;height:1px;background:linear-gradient(to right,var(--gold2),transparent);opacity:.5;max-width:60px}
+.s-title{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(2rem,3.5vw,3rem);
+  font-weight:600;line-height:1.15;color:var(--ink);
+  margin-bottom:12px;
+}
+.s-desc{font-size:.95rem;color:var(--ink3);max-width:520px;margin-bottom:56px}
+
+/* ── ABOUT ── */
+#about{background:var(--paper)}
+.about-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.about-card{
+  background:var(--paper2);
+  border:1px solid var(--paper3);
+  border-radius:var(--r2);padding:36px 30px;
+  position:relative;overflow:hidden;
+  transition:transform .3s,box-shadow .3s;
+}
+.about-card:hover{transform:translateY(-6px);box-shadow:0 20px 60px rgba(13,17,23,.08)}
+.about-card::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:3px;
+  background:linear-gradient(to right,var(--gold),var(--gold2));
+}
+.about-icon{
+  font-size:2rem;margin-bottom:18px;
+  width:52px;height:52px;border-radius:14px;
+  background:rgba(200,169,110,.1);
+  display:flex;align-items:center;justify-content:center;
+}
+.about-card h3{
+  font-family:'Playfair Display',serif;
+  font-size:1.35rem;font-weight:600;margin-bottom:12px;color:var(--cobalt);
+}
+.about-card p{font-size:.88rem;color:var(--ink3);line-height:1.8}
+
+/* ── PROJECTS ── */
+#projects{background:var(--paper2)}
+.proj-eyebrow-center,.s-title-center,.s-desc-center{text-align:center}
+.s-desc-center{margin-left:auto;margin-right:auto}
+.projects-grid{
+  display:grid;
+  grid-template-columns:1fr;
+  gap:28px;
+  max-width:100%;
+  margin:0 auto;
+}
+.proj-card{
+  background:var(--paper);
+  border:1px solid rgba(116,193,223,.18);
+  border-radius:var(--r2);
+  overflow:hidden;
+  transition:transform .3s,box-shadow .3s,border-color .3s;
+  display:flex;flex-direction:column;
+}
+.proj-card:hover{transform:translateY(-8px);box-shadow:0 30px 80px rgba(28,108,146,.12);border-color:rgba(116,193,223,.3)}
+.proj-head{
+  padding:24px 28px;
+  display:flex;align-items:flex-start;gap:18px;
+}
+.proj-num{
+  font-family:'JetBrains Mono',monospace;
+  font-size:.75rem;font-weight:500;
+  width:40px;height:40px;border-radius:10px;
+  display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;margin-top:2px;
+}
+.proj-head-text h3{font-family:'Playfair Display',serif;font-size:1.05rem;font-weight:700;margin-bottom:5px}
+.proj-badge{
+  font-size:.68rem;font-weight:700;letter-spacing:.08em;
+  text-transform:uppercase;
+  padding:3px 10px;border-radius:50px;
+  display:inline-block;
+}
+.proj-divider{height:1px;background:var(--paper3);margin:0}
+.proj-body{padding:24px 28px;flex:1;display:flex;flex-direction:column;gap:14px}
+.proj-desc{font-size:.875rem;color:var(--ink3);line-height:1.75}
+
+/* accordion */
+.acc{border:1px solid var(--paper3);border-radius:10px;overflow:hidden;margin-bottom:0}
+.acc-h{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:13px 16px;background:var(--paper2);
+  cursor:pointer;font-size:.82rem;font-weight:600;
+  color:var(--ink2);transition:background .2s;gap:8px;
+}
+.acc-h:hover{background:var(--paper3)}
+.acc-chevron{
+  font-size:.7rem;opacity:.5;transition:transform .25s;flex-shrink:0;
+}
+.acc-chevron.open{transform:rotate(180deg)}
+.acc-body{display:none;padding:16px;border-top:1px solid var(--paper3);font-size:.84rem;color:var(--ink2);line-height:1.75}
+.acc-body.open{display:block}
+
+/* evidence */
+.ev-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:20px;
+}
+
+.ev-slot{
+  min-height:320px;
+  overflow:hidden;
+}
+
+.ev-slot img{
+  width:100%;
+  height:320px;
+  object-fit:cover;
+  transition:0.3s;
+}
+
+.ev-slot img:hover{
+  transform:scale(1.03);
+}
+
+/* table */
+.tbl{width:100%;border-collapse:collapse;font-size:.82rem;margin:10px 0}
+.tbl th{
+  background:var(--cobalt);color:#fff;
+  padding:9px 13px;text-align:left;font-weight:600;font-size:.75rem;
+  letter-spacing:.04em;text-transform:uppercase;
+}
+.tbl th:first-child{border-radius:6px 0 0 6px}
+.tbl th:last-child{border-radius:0 6px 6px 0}
+.tbl td{padding:9px 13px;border-bottom:1px solid var(--paper3)}
+.tbl tr:last-child td{border-bottom:none}
+.tbl tr:hover td{background:var(--paper2)}
+
+/* steps */
+.steps{display:flex;flex-direction:column;gap:10px;counter-reset:s}
+.step{display:flex;gap:12px;counter-increment:s}
+.step-n{
+  min-width:26px;height:26px;border-radius:50%;
+  background:var(--cobalt);color:#fff;
+  display:flex;align-items:center;justify-content:center;
+  font-size:.72rem;font-weight:700;flex-shrink:0;margin-top:2px;
+}
+.step-n::after{content:counter(s)}
+.step-t{font-size:.84rem;line-height:1.65}
+
+/* prompt cards */
+.prompts{display:flex;flex-direction:column;gap:8px;margin:10px 0}
+.pc{border-radius:8px;padding:12px 14px;font-size:.82rem;line-height:1.65}
+.pc-label{font-size:.65rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:5px;opacity:.65}
+.pc-basic{background:var(--paper2);border-left:3px solid var(--paper3)}
+.pc-improved{background:var(--teal2);border-left:3px solid var(--teal)}
+.pc-improved .pc-label{color:var(--teal)}
+.pc-advanced{background:var(--cobalt2);border-left:3px solid var(--cobalt)}
+.pc-advanced .pc-label{color:var(--cobalt)}
+
+/* code */
+.code{
+  background:#0d1117;color:#c9d1d9;
+  border-radius:10px;padding:18px;
+  font-family:'JetBrains Mono',monospace;font-size:.78rem;line-height:1.65;
+  overflow-x:auto;margin:10px 0;
+}
+
+/* tools */
+.tags{display:flex;flex-wrap:wrap;gap:7px;margin:8px 0}
+.tag{
+  padding:4px 12px;border-radius:50px;
+  font-size:.74rem;font-weight:600;
+  background:var(--cobalt2);color:var(--cobalt);
+  border:1px solid rgba(26,58,107,.15);
+}
+
+/* pros cons */
+.pc-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:10px 0}
+.pros,.cons{border-radius:10px;padding:14px}
+.pros{background:var(--forest2);border:1px solid rgba(30,86,49,.15)}
+.cons{background:var(--rose2);border:1px solid rgba(192,57,43,.15)}
+.pros h5{font-size:.72rem;font-weight:700;color:var(--forest);margin-bottom:8px;text-transform:uppercase;letter-spacing:.06em}
+.cons h5{font-size:.72rem;font-weight:700;color:var(--rose);margin-bottom:8px;text-transform:uppercase;letter-spacing:.06em}
+.pros ul,.cons ul{padding-left:16px;font-size:.82rem;color:var(--ink2);line-height:1.85}
+
+/* principles */
+.principles{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:10px 0}
+.princ{background:var(--paper2);border:1px solid var(--paper3);border-radius:12px;padding:16px;text-align:center}
+.princ-n{
+  width:32px;height:32px;border-radius:50%;
+  background:var(--cobalt);color:#fff;
+  display:flex;align-items:center;justify-content:center;
+  font-weight:700;font-size:.82rem;margin:0 auto 10px;
+}
+.princ h4{font-size:.8rem;font-weight:700;margin-bottom:6px;color:var(--cobalt)}
+.princ p{font-size:.74rem;color:var(--ink3);line-height:1.55}
+
+/* color variants for project cards */
+.v-cobalt .proj-head{background:linear-gradient(135deg,#1a3a6b,#2a5298);color:#fff}
+.v-cobalt .proj-head h3,.v-cobalt .proj-num{color:#fff}
+.v-cobalt .proj-num{background:rgba(255,255,255,.15)}
+.v-cobalt .proj-badge{background:rgba(255,255,255,.15);color:rgba(255,255,255,.9)}
+
+.v-teal .proj-head{background:linear-gradient(135deg,#0e7c7b,#1da8a7);color:#fff}
+.v-teal .proj-head h3,.v-teal .proj-num{color:#fff}
+.v-teal .proj-num{background:rgba(255,255,255,.15)}
+.v-teal .proj-badge{background:rgba(255,255,255,.15);color:rgba(255,255,255,.9)}
+
+.v-rose .proj-head{background:linear-gradient(135deg,#922b21,#c0392b);color:#fff}
+.v-rose .proj-head h3,.v-rose .proj-num{color:#fff}
+.v-rose .proj-num{background:rgba(255,255,255,.15)}
+.v-rose .proj-badge{background:rgba(255,255,255,.15);color:rgba(255,255,255,.9)}
+
+.v-slate .proj-head{background:linear-gradient(135deg,#2d3748,#4a5568);color:#fff}
+.v-slate .proj-head h3,.v-slate .proj-num{color:#fff}
+.v-slate .proj-num{background:rgba(255,255,255,.15)}
+.v-slate .proj-badge{background:rgba(255,255,255,.15);color:rgba(255,255,255,.9)}
+
+.v-violet .proj-head{background:linear-gradient(135deg,#4b2991,#6a3db5);color:#fff}
+.v-violet .proj-head h3,.v-violet .proj-num{color:#fff}
+.v-violet .proj-num{background:rgba(255,255,255,.15)}
+.v-violet .proj-badge{background:rgba(255,255,255,.15);color:rgba(255,255,255,.9)}
+
+.v-forest .proj-head{background:linear-gradient(135deg,#1e5631,#2d7a45);color:#fff}
+.v-forest .proj-head h3,.v-forest .proj-num{color:#fff}
+.v-forest .proj-num{background:rgba(255,255,255,.15)}
+.v-forest .proj-badge{background:rgba(255,255,255,.15);color:rgba(255,255,255,.9)}
+
+/* ── REFLECTION ── */
+#reflection{background:var(--paper)}
+.refl-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.refl-card{
+  background:var(--paper2);border:1px solid var(--paper3);
+  border-radius:var(--r2);padding:36px 30px;
+  position:relative;overflow:hidden;
+  transition:transform .3s,box-shadow .3s;
+}
+.refl-card:hover{transform:translateY(-6px);box-shadow:0 20px 60px rgba(13,17,23,.08)}
+.refl-card::after{
+  content:'';position:absolute;bottom:0;left:0;right:0;height:3px;
+  background:linear-gradient(to right,var(--gold),var(--gold2));
+}
+.refl-icon{
+  font-size:1.6rem;margin-bottom:18px;
+  width:50px;height:50px;border-radius:14px;
+  background:rgba(200,169,110,.1);
+  display:flex;align-items:center;justify-content:center;
+}
+.refl-card h3{
+  font-family:'Playfair Display',serif;
+  font-size:1.2rem;font-weight:600;margin-bottom:12px;color:var(--gold3);
+}
+.refl-card p{font-size:.88rem;color:var(--ink3);line-height:1.8}
+
+/* ── FOOTER ── */
+footer{
+  background:var(--ink);color:rgba(255,255,255,.45);
+  text-align:center;padding:48px clamp(24px,5%,80px);
+  font-size:.82rem;
+}
+footer strong{color:rgba(255,255,255,.85)}
+.footer-gold{color:var(--gold);font-family:'Cormorant Garamond',serif;font-size:1.1rem;margin-bottom:12px;display:block}
+
+/* ── REVEAL ANIMATION ── */
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .6s ease,transform .6s ease}
+.reveal.in{opacity:1;transform:none}
+
+/* ── MOBILE ── */
+@media(max-width:900px){
+  .hero-grid{grid-template-columns:1fr;text-align:center}
+  .hero-meta{grid-template-columns:1fr 1fr}
+  .hero-skills-row{justify-content:center}
+  .hero-photo-side{order:-1}
+  .photo-frame{width:220px;height:220px}
+  .about-grid,.refl-grid{grid-template-columns:1fr}
+  .projects-grid{grid-template-columns:1fr}
+  .principles{grid-template-columns:1fr 1fr}
+}
+@media(max-width:600px){
+  .nav-links{display:none;flex-direction:column;position:absolute;top:var(--nav-h);left:0;right:0;background:rgba(250,250,248,.97);padding:16px;gap:4px;border-bottom:1px solid var(--paper3)}
+  .nav-links.open{display:flex}
+  .nav-toggle{display:block}
+  section{padding:56px clamp(16px,4%,24px)}
+  .pc-grid{grid-template-columns:1fr}
+  .principles{grid-template-columns:1fr}
+  .hero-meta{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="NAV">
+  <div class="nav-logo"><div class="nav-logo-dot"></div>Portfolio · Kỹ Năng Số</div>
+  <ul class="nav-links" id="NL">
+    <li><a href="#home" class="active">Trang chủ</a></li>
+    <li><a href="#about">Mục tiêu</a></li>
+    <li><a href="#projects">Dự án</a></li>
+    <li><a href="#reflection">Tổng kết</a></li>
+  </ul>
+  <div class="nav-toggle" onclick="document.getElementById('NL').classList.toggle('open')">☰</div>
+</nav>
+
+<!-- HERO -->
+<section id="home">
+  <div class="hero-grid">
+    <div>
+      <div class="hero-eyebrow">Portfolio Kỹ Năng Số</div>
+      <h1 class="hero-name">Xin chào,<br>tôi là <em>Nguyễn Duy Tuyên</em></h1>
+      <div class="hero-meta">
+        <div class="meta-item"><div class="meta-label">Ngành học</div><div class="meta-val">Trí tuệ nhân tạo</div></div>
+        <div class="meta-item"><div class="meta-label">Trường</div><div class="meta-val">Trường đại học công nghệ - Đại học Quốc gia Hà Nội</div></div>
+        <div class="meta-item"><div class="meta-label">Sở thích</div><div class="meta-val">Thể thao và nghe nhạc</div></div>
+        <div class="meta-item"><div class="meta-label">Email</div><div class="meta-val">25023041@vnu.edu.vn</div></div>
+      </div>
+      <div class="hero-skills-row">
+        <span class="hskill">📁 Quản lý tệp</span>
+        <span class="hskill">🔍 Tìm kiếm thông tin</span>
+        <span class="hskill">✍️ Prompt Engineering</span>
+        <span class="hskill">🤝 Hợp tác trực tuyến</span>
+        <span class="hskill">🎨 Sáng tạo với AI</span>
+        <span class="hskill">⚖️ AI có trách nhiệm</span>
+      </div>
+    </div>
+    <div class="hero-photo-side">
+      <div class="photo-frame">
+        <div class="photo-inner">
+          <!-- Thay bằng: <img src="your-photo.jpg" alt="Ảnh cá nhân"> -->
+          <div class="photo-icon">👤</div>
+          <span style="font-size:.78rem;opacity:.6">Ảnh cá nhân<br>của bạn</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="hero-scroll-cue">
+    <div class="scroll-line"></div>
+    <span>Cuộn xuống</span>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="wrap">
+    <div class="s-eyebrow">Mục tiêu</div>
+    <h2 class="s-title">Định hướng &amp; Phát triển<br>bản thân</h2>
+    <p class="s-desc">Chia sẻ hành trình học tập và những gì tôi hướng tới trong tương lai.</p>
+    <div class="about-grid">
+      <div class="about-card reveal">
+        <div class="about-icon">🎯</div>
+        <h3>Mục tiêu học tập</h3>
+        <p>[Điền mục tiêu học tập của bạn tại đây. Ví dụ: Trong năm học này, tôi đặt mục tiêu nắm vững nền tảng cốt lõi của ngành, xây dựng thói quen học thuật tốt, và ứng dụng công nghệ vào quá trình học tập một cách hiệu quả.]</p>
+      </div>
+      <div class="about-card reveal">
+        <div class="about-icon">🚀</div>
+        <h3>Định hướng nghề nghiệp</h3>
+        <p>[Điền định hướng nghề nghiệp tại đây. Ví dụ: Tôi hướng tới vai trò [Vị trí] trong lĩnh vực [Lĩnh vực] sau khi tốt nghiệp, với nền tảng kỹ năng số vững chắc để thích nghi nhanh trong môi trường chuyên nghiệp.]</p>
+      </div>
+      <div class="about-card reveal">
+        <div class="about-icon">💡</div>
+        <h3>Điều tôi học được</h3>
+        <p>[Chia sẻ điều tâm đắc nhất bạn học được. Ví dụ: Điều tôi tâm đắc nhất là tư duy sử dụng AI có trách nhiệm — biết khi nào nên dùng AI hỗ trợ và khi nào cần tự lực để thực sự phát triển năng lực bản thân.]</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="wrap">
+    <div class="s-eyebrow proj-eyebrow-center" style="justify-content:center">Nhiệm vụ học tập</div>
+    <h2 class="s-title s-title-center">6 Dự án Kỹ năng Số</h2>
+    <p class="s-desc s-desc-center">Mỗi nhiệm vụ ghi lại một kỹ năng cụ thể cùng minh chứng thực tế.</p>
+    <div class="projects-grid">
+
+      <!-- TASK 01 -->
+      <div class="proj-card v-cobalt reveal">
+        <div class="proj-head">
+          <div class="proj-num">01</div>
+          <div class="proj-head-text">
+            <h3>📁 Quản lý tệp và thư mục</h3>
+            <span class="proj-badge">1 điểm</span>
+          </div>
+        </div>
+        <div class="proj-divider"></div>
+        <div class="proj-body">
+          <p class="proj-desc">Thực hành các thao tác quản lý tệp và thư mục cơ bản: tạo, đổi tên, sao chép, di chuyển và xóa tệp trên hệ điều hành.</p>
+          <div class="acc">
+            <div class="acc-h" onclick="tog(this)">📋 Các bước thực hiện<span class="acc-chevron">▼</span></div>
+            <div class="acc-body">
+              <div class="steps">
+                <div class="step"><div class="step-n"></div><div class="step-t"><strong>Bước 1:</strong> Truy cập vào thư mục chứa các file</div></div>
+                <div class="step"><div class="step-n"></div><div class="step-t"><strong>Bước 2:</strong> Tạo một thư mục mới và truy cập vào thư mục đó</div></div>
+                <div class="step"><div class="step-n"></div><div class="step-t"><strong>Bước 3:</strong> Tạo và đổi tên tệp</div></div>
+                <div class="step"><div class="step-n"></div><div class="step-t"><strong>Bước 4:</strong> Sao chép tệp</div></div>
+                <div class="step"><div class="step-n"></div><div class="step-t"><strong>Bước 5:</strong> Xóa tệp</div></div>
+                <div class="step"><div class="step-n"></div><div class="step-t"><strong>Bước 6:</strong> Khôi phuc tệp</div></div>
+              </div>
+            </div>
+          </div>
+          <div class="acc">
+            <div class="acc-h" onclick="tog(this)">🖼️ Minh chứng ảnh chụp màn hình<span class="acc-chevron">▼</span></div>
+            <div class="acc-body">
+              <p style="font-size:.8rem;color:var(--ink3);margin-bottom:10px"></p>
+              <div class="ev-grid">
+                <div class="ev-slot"><img src="task_1/anh1.png"></div>
+                <div class="ev-slot"><img src="task_1/anh2.png"></div>
+                <div class="ev-slot"><img src="task_1/anh3.png"></div>
+                <div class="ev-slot"><img src="task_1/anh4.png"></div>
+                <div class="ev-slot"><img src="task_1/anh5.png"></div>
+                <div class="ev-slot"><img src="task_1/anh6.png"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TASK 02 -->
+      <div class="proj-card v-teal reveal">
+        <div class="proj-head">
+          <div class="proj-num">02</div>
+          <div class="proj-head-text">
+            <h3>🔍 Tìm kiếm &amp; đánh giá thông tin</h3>
+            <span class="proj-badge">1 điểm</span>
+          </div>
+        </div>
+        <div class="proj-divider"></div>
+        <div class="proj-body">
+          <p class="proj-desc">Tìm kiếm tài liệu học thuật từ các nguồn đáng tin cậy, đánh giá chất lượng nguồn và tổng hợp kiến thức phục vụ nghiên cứu.</p>
+          <div class="acc">
+            <div class="acc-h" onclick="tog(this)">I. Chủ đề &amp; Phương pháp<span class="acc-chevron">▼</span></div>
+            <div class="acc-body">
+              <p><strong>Ứng dụng Trí tuệ nhân tạo trong Giáo dục</strong></p>
+              <p style="margin-top:8px;font-size:.83rem;color:var(--ink3)">Nghiên cứu ứng dụng AI trong giáo dục thông qua việc tìm kiếm, đánh giá và tổng hợp tài liệu học thuật. Báo cáo tập trung vào học tập cá nhân hóa, gia sư thông minh, đánh giá tự động và hỗ trợ giảng dạy bằng AI.</p>
+              <p style="margin-top:14px"><strong>Nguồn sử dụng:</strong> Google Scholar, IEEE Xplore, SpringerLink, UNESCO, World Bank, OpenAI và các sách, tạp chí học thuật.</p>
+              <p style="margin-top:8px"><strong>Từ khóa:</strong></p>
+              <ul style="padding-left:18px;font-size:.83rem;color:var(--ink3);line-height:1.9;margin-top:4px">
+                <li>Trí tuệ nhân tạo trong giáo dục</li>
+                <li>Ứng dụng AI trong giáo dục</li>
+                <li>Học tập cá nhân hóa</li>
+                <li>Phân tích dữ liệu học tập</li>
+              </ul>
+              <div class="ev-grid" style="margin-top:12px">
+                <div class="ev-slot">📸 Minh chứng tìm kiếm</div>
+              </div>
+            </div>
+          </div>
+          <div class="acc">
+            <div class="acc-h" onclick="tog(this)">II. Tổng hợp &amp; Đánh giá tài liệu<span class="acc-chevron">▼</span></div>
+            <div class="acc-body">
+              <table class="tbl">
+                <thead><tr><th>#</th><th>Tài liệu</th><th>Loại</th></tr></thead>
+                <tbody>
+                  <tr><td>1</td><td>[Tên tài liệu 1]</td><td>Sách học thuật</td></tr>
+                  <tr><td>2</td><td>[Tên tài liệu 2]</td><td>Bài báo khoa học</td></tr>
+                  <tr><td>3</td><td>[Tên tài liệu 3]</td><td>Nguồn mở</td></tr>
+                </tbody>
+              </table>
+              <table class="tbl" style="margin-top:10px">
+                <thead><tr><th>Mức độ tin cậy</th><th>Nguồn</th></tr></thead>
+                <tbody>
+                  <tr><td>⭐⭐⭐ Rất cao</td><td>[Tên nguồn]</td></tr>
+                  <tr><td>⭐⭐ Cao</td><td>[Tên nguồn]</td></tr>
+                  <tr><td>⭐ Trung bình</td><td>[Tên nguồn]</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TASK 03 -->
+      <div class="proj-card v-rose reveal">
+        <div class="proj-head">
+          <div class="proj-num">03</div>
+          <div class="proj-head-text">
+            <h3>✍️ Viết Prompt hiệu quả</h3>
+            <span class="proj-badge">1 điểm</span>
+          </div>
+        </div>
+        <div class="proj-divider"></div>
+        <div class="proj-body">
+          <p class="proj-desc">Thử nghiệm và tối ưu prompt: so sánh 3 mức độ (cơ bản → cải tiến → nâng cao) cho các tác vụ học tập thực tế.</p>
+          <div class="acc">
+            <div class="acc-h" onclick="tog(this)">Tác vụ 1: [Tên tác vụ]<span class="acc-chevron">▼</span></div>
+            <div class="acc-body">
+              <div class="prompts">
+                <div class="pc pc-basic"><div class="pc-label">Prompt cơ bản</div>[Prompt cơ bản của bạn — thường ngắn, mơ hồ]</div>
+                <div class="pc pc-improved"><div class="pc-label">Prompt cải tiến</div>[Prompt cải tiến — có yêu cầu cụ thể hơn về độ dài, định dạng]</div>
+                <div class="pc pc-advanced"><div class="pc-label">Prompt nâng cao</div>[Prompt nâng cao — có vai trò, cấu trúc rõ ràng, ràng buộc đầu ra cụ thể, few-shot nếu cần]</div>
+              </div>
+            </div>
+          </div>
+          <div class="acc">
+            <div class="acc-h" onclick="tog(this)">Tác vụ 2: [Tên tác vụ]<span class="acc-chevron">▼</span></div>
+            <div class="acc-body">
+              <div class="prompts">
+                <div class="pc pc-basic"><div class="pc-label">Prompt cơ bản</div>[Prompt cơ bản]</div>
+                <div class="pc pc-improved"><div class="pc-label">Prompt cải tiến</div>[Prompt cải tiến]</div>
+                <div class="pc pc-advanced"><div class="pc-label">Prompt nâng cao</div>[Prompt nâng cao]</div>
+              </div>
+            </div>
+          </div>
+          <div class="acc">
+            <div class="acc-h" onclick="tog(this)">So sánh kết quả &amp; Nhận xét<span class="acc-chevron">▼</span></div>
+            <div class="acc-body">
+              <table class="tbl">
+                <thead><tr><th>Tác vụ</th><th>Cơ bản</th><th>Cải tiến</th><th>Nâng cao</th></tr></thead>
+                <tbody>
+                  <tr><td>[Tác vụ 1]</td><td>[KQ]</td><td>[KQ]</td><td>[KQ]</td></tr>
+                  <tr><td>[Tác vụ 2]</td><td>[KQ]</td><td>[KQ]</td><td>[KQ]</td></tr>
+                </tbody>
+              </table>
+              <div class="ev-grid" style="margin-top:12px">
+                <div class="ev-slot">📸 Minh chứng kết quả</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TASK 04 -->
+      <div class="proj-card v-slate reveal">
+        <div class="proj-head">
+          <div class="proj-num">04</div>
+          <div class="proj-head-text">
+            <h3>🤝 Hợp tác trực tuyến</h3>
+            <span class="proj-badge">1 điểm</span>
+          </div>
+        </div>
+        <div class="proj-divider"></div>
+        <div class="proj-body">
+          <p class="proj-desc">Sử dụng công cụ hợp tác trực tuyến để quản lý công việc, giao tiếp và lưu trữ tài nguyên dự án nhóm hiệu quả.</p>
+          <div class="acc">
+            <div class="acc-h" onclick="tog(this)">Công cụ sử dụng &amp; Thiết lập<span class="acc-chevron">▼</span></div>
+            <div class="acc-body">
+              <div class="tags">
+                <span class="tag">Trello</span>
+                <span class="tag">Google Docs</span>
+                <span class="tag">Google Drive</span>
+                <span class="tag">Discord</span>
+                <span class="tag">[Công cụ khác]</span>
+              </div>
+              <div class="ev-grid" style="margin-top:12px">
+                <div class="ev-slot">📸 Trello Board</div>
+                <div class="ev-slot">📸 Google Docs</div>
+                <div class="ev-slot">📸 Discord</div>
+              </div>
+            </div>
+          </div>
+          <div class="acc">
+            <div class="acc-h" onclick="tog(this)">Phân tích hiệu quả công cụ<span class="acc-chevron">▼</span></div>
+            <div class="acc-body">
+              <table class="tbl">
+                <thead><tr><th>Công cụ</th><th>Nhận xét</th></tr></thead>
+                <tbody>
+                  <tr><td>Trello</td><td>[Nhận xét]</td></tr>
+                  <tr><td>Google Docs</td><td>[Nhận xét]</td></tr>
+                  <tr><td>Google Drive</td><td>[Nhận xét]</td></tr>
+                  <tr><td>Discord</td><td>[Nhận xét]</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="acc">
+            <div class="acc-h" onclick="tog(this)">Thách thức &amp; Giải pháp<span class="acc-chevron">▼</span></div>
+            <div class="acc-body">
+              <div class="pc-grid">
+                <div class="cons"><h5>⚠️ Thách thức</h5><ul><li>[Thách thức 1]</li><li>[Thách thức 2]</li><li>[Thách thức 3]</li></ul></div>
+                <div class="pros"><h5>✅ Giải pháp</h5><ul><li>[Giải pháp 1]</li><li>[Giải pháp 2]</li><li>[Giải pháp 3]</li></ul></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TASK 05 -->
+      <div class="proj-card v-violet reveal">
+        <div class="proj-head">
+          <div class="proj-num">05</div>
+          <div class="proj-head-text">
+            <h3>🎨 Sáng tạo nội dung với AI</h3>
+            <span class="proj-badge">1 điểm</span>
+          </div>
+        </div>
+        <div class="proj-divider"></div>
+        <div class="proj-body">
+          <p class="proj-desc">Thiết kế infographic và video ngắn về chủ đề tự chọn, kết hợp nhiều công cụ AI tạo sinh.</p>
+          <div class="tags"><span class="tag">✦ ChatGPT</span><span class="tag">✦ DALL-E</span><span class="tag">✦ Canva AI</span></div>
+          <div class="acc">
+            <div class="acc-h" onclick="tog(this)">Quá trình sử dụng công cụ AI<span class="acc-chevron">▼</span></div>
+            <div class="acc-body">
+              <p style="font-weight:600;font-size:.84rem;margin-bottom:8px">ChatGPT – Tạo nội dung văn bản</p>
+              <div class="pc pc-advanced" style="margin-bottom:12px"><div class="pc-label">Prompt đã dùng</div>"[Prompt của bạn cho ChatGPT]"</div>
+              <div class="pc-grid">
+                <div class="pros"><h5>✅ Điểm mạnh</h5><ul><li>[Điểm mạnh 1]</li><li>[Điểm mạnh 2]</li></ul></div>
+                <div class="cons"><h5>⚠️ Hạn chế</h5><ul><li>[Hạn chế 1]</li><li>[Hạn chế 2]</li></ul></div>
+              </div>
+            </div>
+          </div>
+          <div class="acc">
+            <div class="acc-h" onclick="tog(this)">Sản phẩm cuối cùng<span class="acc-chevron">▼</span></div>
+            <div class="acc-body">
+              <p style="font-weight:600;font-size:.84rem;margin-bottom:8px">1. Infographic</p>
+              <div class="ev-grid">
+                <div class="ev-slot" style="aspect-ratio:3/4;grid-column:span 2;min-height:160px"><!-- <img src="task5/infographic.png"> -->🖼️ Infographic của bạn</div>
+              </div>
+              <p style="font-weight:600;font-size:.84rem;margin:14px 0 8px">2. Video ngắn</p>
+              <!-- <video controls style="width:100%;border-radius:8px"><source src="task5/video.mp4" type="video/mp4"></video> -->
+              <div class="ev-slot" style="aspect-ratio:16/9;min-height:140px">🎬 Video ngắn của bạn</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TASK 06 -->
+      <div class="proj-card v-forest reveal">
+        <div class="proj-head">
+          <div class="proj-num">06</div>
+          <div class="proj-head-text">
+            <h3>⚖️ AI có trách nhiệm</h3>
+            <span class="proj-badge">1 điểm</span>
+          </div>
+        </div>
+        <div class="proj-divider"></div>
+        <div class="proj-body">
+          <p class="proj-desc">Xây dựng bộ nguyên tắc cá nhân và phân tích tư duy phản biện về đạo đức AI trong học tập và nghiên cứu.</p>
+          <div class="acc">
+            <div class="acc-h" onclick="tog(this)">I. Nghiên cứu chính sách AI<span class="acc-chevron">▼</span></div>
+            <div class="acc-body">
+              <p style="font-size:.83rem;line-height:1.75;color:var(--ink3)">[Tóm tắt các điểm chính trong chính sách AI của trường bạn. So sánh với các trường khác và nêu nhận định cá nhân.]</p>
+              <table class="tbl" style="margin-top:12px">
+                <thead><tr><th>Khía cạnh</th><th>Trường của bạn</th><th>Trường khác</th></tr></thead>
+                <tbody>
+                  <tr><td>Quan điểm về AI</td><td>[Nhận xét]</td><td>[Nhận xét]</td></tr>
+                  <tr><td>Quy định sử dụng</td><td>[Nhận xét]</td><td>[Nhận xét]</td></tr>
+                  <tr><td>Hình thức kiểm soát</td><td>[Nhận xét]</td><td>[Nhận xét]</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="acc">
+            <div class="acc-h" onclick="tog(this)">II. Thực hiện nhiệm vụ với AI<span class="acc-chevron">▼</span></div>
+            <div class="acc-body">
+              <div class="pc pc-advanced" style="margin-bottom:12px"><div class="pc-label">Prompt đã sử dụng</div>[Prompt của bạn]</div>
+              <div class="code">// Mã nguồn / đầu ra AI (nếu có)
+// [Dán nội dung vào đây]</div>
+              <p style="font-size:.76rem;color:var(--ink3);margin-top:10px;font-style:italic">* Tác giả xác nhận đã sử dụng [Tên AI] để hỗ trợ [mục đích]. Tác giả đã kiểm tra, chỉnh sửa và bổ sung theo kiến thức cá nhân.</p>
+            </div>
+          </div>
+          <div class="acc">
+            <div class="acc-h" onclick="tog(this)">III–IV. Đạo đức &amp; Bộ nguyên tắc<span class="acc-chevron">▼</span></div>
+            <div class="acc-body">
+              <div class="pc-grid" style="margin-bottom:14px">
+                <div class="pros"><h5>✅ Hỗ trợ hợp lý</h5><ul><li>Giải thích khái niệm lý thuyết</li><li>Gợi ý hướng tiếp cận</li><li>Hỗ trợ brainstorming</li></ul></div>
+                <div class="cons"><h5>❌ Gian lận học thuật</h5><ul><li>Nộp bài do AI tạo hoàn toàn</li><li>Không thể giải trình nội dung</li><li>Giả mạo dữ liệu nghiên cứu</li></ul></div>
+              </div>
+              <p style="font-weight:600;font-size:.84rem;margin-bottom:10px">Bộ 6 nguyên tắc cá nhân:</p>
+              <div class="principles">
+                <div class="princ"><div class="princ-n">1</div><h4>Tư duy nguyên bản trước</h4><p>Phác thảo ý tưởng trước khi hỏi AI</p></div>
+                <div class="princ"><div class="princ-n">2</div><h4>Zero Trust</h4><p>Xác thực mọi thông tin AI cung cấp</p></div>
+                <div class="princ"><div class="princ-n">3</div><h4>AI là công cụ hỗ trợ</h4><p>Không để AI làm thay hoàn toàn</p></div>
+                <div class="princ"><div class="princ-n">4</div><h4>Minh bạch &amp; Trích dẫn</h4><p>Khai báo rõ việc dùng AI</p></div>
+                <div class="princ"><div class="princ-n">5</div><h4>Bảo vệ dữ liệu</h4><p>Không nhập thông tin nhạy cảm</p></div>
+                <div class="princ"><div class="princ-n">6</div><h4>Trách nhiệm cuối cùng</h4><p>Tự chịu trách nhiệm về bài nộp</p></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- REFLECTION -->
+<section id="reflection">
+  <div class="wrap">
+    <div class="s-eyebrow">Tổng kết</div>
+    <h2 class="s-title">Đánh giá &amp; Trưởng thành</h2>
+    <p class="s-desc">Nhìn lại hành trình, những gì đã học và bài học rút ra từ những thách thức.</p>
+    <div class="refl-grid">
+      <div class="refl-card reveal">
+        <div class="refl-icon">💬</div>
+        <h3>Trải nghiệm &amp; Cảm xúc</h3>
+        <p>[Chia sẻ cảm xúc và điều tâm đắc nhất khi thực hiện dự án. Khoảnh khắc nào khiến bạn tự hào? Điều gì giúp bạn trưởng thành hơn trong cách nhìn nhận công nghệ?]</p>
+      </div>
+      <div class="refl-card reveal">
+        <div class="refl-icon">📈</div>
+        <h3>Kiến thức &amp; Kỹ năng</h3>
+        <p>[Phân tích các kỹ năng bạn sẽ áp dụng vào tương lai. Ví dụ: Prompt Engineering, đánh giá nguồn học thuật, quản lý dự án số — và cách cụ thể bạn sẽ sử dụng chúng.]</p>
+      </div>
+      <div class="refl-card reveal">
+        <div class="refl-icon">🔧</div>
+        <h3>Thách thức &amp; Bài học</h3>
+        <p>[Chia sẻ những khó khăn bạn gặp phải và bài học kinh nghiệm rút ra. Bạn đã xử lý chúng như thế nào và điều đó dạy bạn điều gì về bản thân?]</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-gold">Portfolio Kỹ Năng Số</div>
+  <p><strong>[Tên Của Bạn]</strong> &nbsp;·&nbsp; <strong>[Tên Trường]</strong> &nbsp;·&nbsp; [Năm học]</p>
+  <p style="margin-top:8px;font-size:.76rem;opacity:.5">Được tạo với HTML &amp; CSS thuần · Lưu dưới dạng PDF để nộp bài</p>
+</footer>
+
+<script>
+// Accordion
+function tog(h){
+  var b=h.nextElementSibling,c=h.querySelector('.acc-chevron');
+  var open=b.classList.contains('open');
+  h.closest('.proj-body').querySelectorAll('.acc-body').forEach(function(x){x.classList.remove('open')});
+  h.closest('.proj-body').querySelectorAll('.acc-chevron').forEach(function(x){x.classList.remove('open')});
+  if(!open){b.classList.add('open');c.classList.add('open')}
+}
+
+// Active nav on scroll
+var secs=document.querySelectorAll('section[id]');
+var links=document.querySelectorAll('.nav-links a');
+window.addEventListener('scroll',function(){
+  var y=window.scrollY+100;
+  secs.forEach(function(s){
+    if(y>=s.offsetTop&&y<s.offsetTop+s.offsetHeight){
+      links.forEach(function(a){a.classList.remove('active')});
+      var a=document.querySelector('.nav-links a[href="#'+s.id+'"]');
+      if(a)a.classList.add('active');
+    }
+  });
+},{passive:true});
+
+// Close mobile nav on link click
+links.forEach(function(a){a.addEventListener('click',function(){document.getElementById('NL').classList.remove('open')})});
+
+// Scroll reveal
+var obs=new IntersectionObserver(function(entries){
+  entries.forEach(function(e){if(e.isIntersecting)e.target.classList.add('in')});
+},{threshold:0.1});
+document.querySelectorAll('.reveal').forEach(function(el){obs.observe(el)});
+</script>
+</body>
+</html>
